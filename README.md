@@ -4,6 +4,8 @@ Group 27's machine-learning project: predict the probability that the blue team 
 
 **Current status:** preliminary logistic-regression and random-forest experiments are complete. All reported scores are validation results; the final test set remains reserved. The comparison is ready for TA/team discussion before further scope or data changes.
 
+**Separate development track:** [fresh Riot collection](riot-project/README.md) has started on `feat/riot-data-collection`, following the decision to explore a newer, richer NA1 dataset alongside the existing report. Its raw responses remain local; this track does not change the saved Kaggle experiments.
+
 ## Start here
 
 - [Model comparison brief (PDF)](progress-report/Group27_Model_Comparison.pdf): one-page summary for discussion.

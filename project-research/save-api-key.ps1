@@ -21,6 +21,9 @@ try {
     $keyPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($hiddenKey)
     $keyText = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($keyPointer).Trim()
     if ([string]::IsNullOrWhiteSpace($keyText)) { throw 'No key supplied; nothing saved.' }
+    if ($Provider -eq 'Riot' -and $keyText -notmatch '^RGAPI-[A-Za-z0-9-]+$') {
+        throw 'This is not the expected Riot API key format. Copy the API key value beginning RGAPI- from the Developer Portal; no value was saved.'
+    }
     if ($Provider -eq 'Kaggle' -and $keyText.StartsWith('{')) {
         throw 'Use a new Kaggle API token from settings/API, not the legacy kaggle.json contents.'
     }

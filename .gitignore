@@ -8,6 +8,7 @@
 !/.github/
 !/progress-report/
 !/project-research/
+!/riot-project/
 !/Project Proposal.docx
 
 # Local credentials, raw player records, and alternative dataset downloads.
@@ -22,6 +23,8 @@
 /project-research/data/
 /project-research/private/
 /project-research/sources/
+/riot-project/private/
+/riot-project/data/
 /project-research/progress-report-source-notes.md
 
 # Generic style files supplied with the course template remain available locally.
