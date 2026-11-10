@@ -1,0 +1,71 @@
+{
+  "forest_core_minus_logistic_core": {
+    "comparison": "forest_core_minus_logistic_core",
+    "resamples": 2000,
+    "seed": 42,
+    "scope": "Paired validation-row bootstrap conditional on fixed fitted models; does not include training/split variability or correct for multiple comparisons.",
+    "differences": {
+      "accuracy": {
+        "estimate": -0.001349527665317139,
+        "lower_95": -0.010796221322537112,
+        "upper_95": 0.007422402159244264
+      },
+      "brier": {
+        "estimate": 0.0007498642359298343,
+        "lower_95": -0.0009639512732393491,
+        "upper_95": 0.0024499056200181853
+      },
+      "log_loss": {
+        "estimate": 0.0023980256381245187,
+        "lower_95": -0.002353659570079207,
+        "upper_95": 0.007046942448158352
+      }
+    }
+  },
+  "forest_expanded_minus_logistic_expanded": {
+    "comparison": "forest_expanded_minus_logistic_expanded",
+    "resamples": 2000,
+    "seed": 42,
+    "scope": "Paired validation-row bootstrap conditional on fixed fitted models; does not include training/split variability or correct for multiple comparisons.",
+    "differences": {
+      "accuracy": {
+        "estimate": -0.002699055330634278,
+        "lower_95": -0.01282051282051282,
+        "upper_95": 0.007422402159244264
+      },
+      "brier": {
+        "estimate": -6.297571757165127e-05,
+        "lower_95": -0.00219462884685645,
+        "upper_95": 0.0020695367133626574
+      },
+      "log_loss": {
+        "estimate": 0.0002174250513858036,
+        "lower_95": -0.005086724413059754,
+        "upper_95": 0.005853425420615157
+      }
+    }
+  },
+  "forest_expanded_minus_forest_core": {
+    "comparison": "forest_expanded_minus_forest_core",
+    "resamples": 2000,
+    "seed": 42,
+    "scope": "Paired validation-row bootstrap conditional on fixed fitted models; does not include training/split variability or correct for multiple comparisons.",
+    "differences": {
+      "accuracy": {
+        "estimate": 0.0006747638326585695,
+        "lower_95": -0.010121457489878543,
+        "upper_95": 0.011470985155195682
+      },
+      "brier": {
+        "estimate": -0.0015880610275480066,
+        "lower_95": -0.0033088535668572457,
+        "upper_95": 0.00014247946802628406
+      },
+      "log_loss": {
+        "estimate": -0.005596289602631488,
+        "lower_95": -0.010723976444656343,
+        "upper_95": -0.0007495721473472446
+      }
+    }
+  }
+}

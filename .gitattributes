@@ -1,0 +1,11 @@
+* text=auto eol=lf
+
+# Preserve exact dataset/split bytes: their SHA-256 hashes are part of the checks.
+*.csv -text
+
+*.pdf binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.docx binary
+*.zip binary

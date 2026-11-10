@@ -1,0 +1,87 @@
+{
+  "dataset_sha256": "82b2e23279097c2dac616e966eb2911711c428d41b6382b4cdb15da4892f9ca6",
+  "split_file_sha256": "185799b0f4e55e517aef3ea948d7a7fbacfeb15caf110c25f1a882a8a0a5d160",
+  "n_train": 6915,
+  "n_validation": 1482,
+  "test_evaluated": false,
+  "parameters": {
+    "n_estimators": 500,
+    "criterion": "gini",
+    "max_depth": 8,
+    "min_samples_leaf": 10,
+    "min_samples_split": 2,
+    "max_features": "sqrt",
+    "bootstrap": true,
+    "random_state": 42,
+    "n_jobs": -1,
+    "class_weight": null
+  },
+  "features": {
+    "forest_core": [
+      "gold",
+      "experience",
+      "level",
+      "lane_cs",
+      "jungle_cs",
+      "kills",
+      "assists"
+    ],
+    "forest_expanded": [
+      "gold",
+      "experience",
+      "level",
+      "lane_cs",
+      "jungle_cs",
+      "kills",
+      "assists",
+      "dragons",
+      "heralds",
+      "wards_placed",
+      "wards_destroyed"
+    ]
+  },
+  "threshold": 0.5,
+  "tuning": "No parameter search; one fixed forest configuration chosen before viewing forest scores",
+  "preprocessing": "Same blue-minus-red differences; no scaling, filtering or augmentation",
+  "learning": "Bootstrap decision trees use greedy Gini-impurity reduction; probability is the mean of tree leaf class proportions",
+  "diagnostics": {
+    "forest_core": {
+      "fit_and_predict_seconds": 0.8235650999995414,
+      "training_accuracy": 0.7582067968185104,
+      "training_log_loss": 0.4849877803231608,
+      "confusion_matrix": [
+        [
+          510,
+          232
+        ],
+        [
+          186,
+          554
+        ]
+      ],
+      "tree_depth_min": 8,
+      "tree_depth_max": 8,
+      "features_considered_per_split": 2
+    },
+    "forest_expanded": {
+      "fit_and_predict_seconds": 0.8128584999940358,
+      "training_accuracy": 0.7691973969631236,
+      "training_log_loss": 0.4743292202972988,
+      "confusion_matrix": [
+        [
+          514,
+          228
+        ],
+        [
+          189,
+          551
+        ]
+      ],
+      "tree_depth_min": 8,
+      "tree_depth_max": 8,
+      "features_considered_per_split": 3
+    }
+  },
+  "scikit-learn_version": "1.6.1",
+  "importance_caution": "Impurity importance can favor high-cardinality variables and share credit among correlated inputs; not causal or held-out importance."
+}

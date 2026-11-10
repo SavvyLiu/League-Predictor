@@ -1,0 +1,30 @@
+{
+  "sha256": "82b2e23279097c2dac616e966eb2911711c428d41b6382b4cdb15da4892f9ca6",
+  "rows": 9879,
+  "columns": 40,
+  "source_predictors": 38,
+  "bytes": 1446502,
+  "labels": {
+    "0": 4949,
+    "1": 4930
+  },
+  "missing_cells": 0,
+  "duplicate_ids": 0,
+  "duplicate_predictor_rows": 0,
+  "constant_columns": [],
+  "redundancy_checks": {
+    "blue_kills_equal_red_deaths": true,
+    "red_kills_equal_blue_deaths": true,
+    "gold_difference": true,
+    "experience_difference": true,
+    "blue_gold_rate": true,
+    "blue_cs_rate": true,
+    "red_gold_rate": true,
+    "red_cs_rate": true
+  },
+  "excluded_rows": 0,
+  "source_limitations": [
+    "No dates, region, patch or player IDs",
+    "Exact checkpoint provenance is not independently verifiable"
+  ]
+}

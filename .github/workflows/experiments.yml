@@ -1,0 +1,37 @@
+name: Reproduce validation experiments
+
+on:
+  push:
+    paths:
+      - 'progress-report/code/**'
+      - 'progress-report/data/**'
+      - 'progress-report/requirements.txt'
+      - 'progress-report/results/split_assignments.csv'
+      - '.github/workflows/experiments.yml'
+  pull_request:
+    paths:
+      - 'progress-report/code/**'
+      - 'progress-report/data/**'
+      - 'progress-report/requirements.txt'
+      - 'progress-report/results/split_assignments.csv'
+      - '.github/workflows/experiments.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: progress-report/requirements.txt
+      - run: python -m pip install -r progress-report/requirements.txt
+      - run: python progress-report/code/run_experiments.py
+      - run: python progress-report/code/run_random_forest.py
+      - run: python progress-report/code/verify_results.py

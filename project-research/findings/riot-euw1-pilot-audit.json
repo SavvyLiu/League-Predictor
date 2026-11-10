@@ -1,0 +1,350 @@
+{
+  "platform": "euw1",
+  "routing": "europe",
+  "usable_matches": 10,
+  "skipped_matches": 0,
+  "blueWins_counts": {
+    "0": 7,
+    "1": 3
+  },
+  "requests_made_this_run": 22,
+  "response_status_counts": {
+    "200": 22
+  },
+  "collected_at_utc": "2026-10-09T23:58:31.512188+00:00",
+  "scope": "Small convenience sample for API/schema feasibility; not a representative training set.",
+  "schema_examples": [
+    {
+      "match_id": "EUW1_8007729429",
+      "events_before_cutoff": 379,
+      "event_types": {
+        "PAUSE_END": 1,
+        "ITEM_PURCHASED": 99,
+        "SKILL_LEVEL_UP": 77,
+        "ITEM_DESTROYED": 62,
+        "WARD_PLACED": 35,
+        "WARD_KILL": 4,
+        "LEVEL_UP": 65,
+        "CHAMPION_KILL": 20,
+        "CHAMPION_SPECIAL_KILL": 3,
+        "TURRET_PLATE_DESTROYED": 10,
+        "ELITE_MONSTER_KILL": 3
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    },
+    {
+      "match_id": "EUW1_7980186298",
+      "events_before_cutoff": 373,
+      "event_types": {
+        "PAUSE_END": 1,
+        "ITEM_PURCHASED": 97,
+        "ITEM_DESTROYED": 71,
+        "ITEM_UNDO": 5,
+        "SKILL_LEVEL_UP": 73,
+        "WARD_PLACED": 36,
+        "LEVEL_UP": 62,
+        "CHAMPION_KILL": 11,
+        "CHAMPION_SPECIAL_KILL": 1,
+        "WARD_KILL": 5,
+        "TURRET_PLATE_DESTROYED": 6,
+        "ELITE_MONSTER_KILL": 4,
+        "ITEM_SOLD": 1
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    },
+    {
+      "match_id": "EUW1_7980144400",
+      "events_before_cutoff": 356,
+      "event_types": {
+        "PAUSE_END": 1,
+        "ITEM_PURCHASED": 96,
+        "SKILL_LEVEL_UP": 74,
+        "ITEM_UNDO": 3,
+        "WARD_PLACED": 32,
+        "WARD_KILL": 3,
+        "ITEM_DESTROYED": 45,
+        "LEVEL_UP": 63,
+        "CHAMPION_KILL": 25,
+        "CHAMPION_SPECIAL_KILL": 1,
+        "TURRET_PLATE_DESTROYED": 9,
+        "ELITE_MONSTER_KILL": 4
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    },
+    {
+      "match_id": "EUW1_7973595736",
+      "events_before_cutoff": 343,
+      "event_types": {
+        "PAUSE_END": 1,
+        "ITEM_PURCHASED": 95,
+        "SKILL_LEVEL_UP": 71,
+        "ITEM_DESTROYED": 48,
+        "WARD_PLACED": 32,
+        "LEVEL_UP": 61,
+        "CHAMPION_KILL": 17,
+        "CHAMPION_SPECIAL_KILL": 1,
+        "ITEM_UNDO": 2,
+        "TURRET_PLATE_DESTROYED": 9,
+        "ITEM_SOLD": 1,
+        "ELITE_MONSTER_KILL": 4,
+        "WARD_KILL": 1
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    },
+    {
+      "match_id": "EUW1_7973583040",
+      "events_before_cutoff": 385,
+      "event_types": {
+        "PAUSE_END": 1,
+        "ITEM_PURCHASED": 89,
+        "SKILL_LEVEL_UP": 78,
+        "ITEM_UNDO": 5,
+        "ITEM_DESTROYED": 78,
+        "WARD_PLACED": 32,
+        "LEVEL_UP": 64,
+        "CHAMPION_KILL": 17,
+        "CHAMPION_SPECIAL_KILL": 1,
+        "ITEM_SOLD": 2,
+        "TURRET_PLATE_DESTROYED": 11,
+        "WARD_KILL": 4,
+        "ELITE_MONSTER_KILL": 3
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    },
+    {
+      "match_id": "EUW1_7952487602",
+      "events_before_cutoff": 344,
+      "event_types": {
+        "PAUSE_END": 1,
+        "ITEM_PURCHASED": 95,
+        "ITEM_UNDO": 8,
+        "SKILL_LEVEL_UP": 75,
+        "WARD_PLACED": 32,
+        "LEVEL_UP": 65,
+        "ITEM_DESTROYED": 52,
+        "CHAMPION_KILL": 4,
+        "CHAMPION_SPECIAL_KILL": 1,
+        "TURRET_PLATE_DESTROYED": 4,
+        "WARD_KILL": 2,
+        "ELITE_MONSTER_KILL": 4,
+        "ITEM_SOLD": 1
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    },
+    {
+      "match_id": "EUW1_7925413809",
+      "events_before_cutoff": 351,
+      "event_types": {
+        "PAUSE_END": 1,
+        "ITEM_PURCHASED": 94,
+        "SKILL_LEVEL_UP": 74,
+        "WARD_PLACED": 33,
+        "LEVEL_UP": 64,
+        "ITEM_DESTROYED": 49,
+        "CHAMPION_KILL": 17,
+        "CHAMPION_SPECIAL_KILL": 1,
+        "ITEM_UNDO": 3,
+        "TURRET_PLATE_DESTROYED": 8,
+        "ELITE_MONSTER_KILL": 4,
+        "WARD_KILL": 3
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    },
+    {
+      "match_id": "EUW1_7925379060",
+      "events_before_cutoff": 389,
+      "event_types": {
+        "PAUSE_END": 1,
+        "ITEM_PURCHASED": 100,
+        "SKILL_LEVEL_UP": 77,
+        "WARD_PLACED": 43,
+        "LEVEL_UP": 67,
+        "ITEM_DESTROYED": 63,
+        "CHAMPION_KILL": 22,
+        "CHAMPION_SPECIAL_KILL": 1,
+        "WARD_KILL": 4,
+        "TURRET_PLATE_DESTROYED": 8,
+        "ELITE_MONSTER_KILL": 3
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    },
+    {
+      "match_id": "EUW1_7916358462",
+      "events_before_cutoff": 345,
+      "event_types": {
+        "PAUSE_END": 1,
+        "SKILL_LEVEL_UP": 75,
+        "ITEM_PURCHASED": 90,
+        "WARD_PLACED": 38,
+        "LEVEL_UP": 64,
+        "ITEM_DESTROYED": 45,
+        "CHAMPION_KILL": 9,
+        "CHAMPION_SPECIAL_KILL": 1,
+        "TURRET_PLATE_DESTROYED": 8,
+        "ITEM_UNDO": 4,
+        "WARD_KILL": 5,
+        "ITEM_SOLD": 1,
+        "ELITE_MONSTER_KILL": 4
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    },
+    {
+      "match_id": "EUW1_7916252998",
+      "events_before_cutoff": 344,
+      "event_types": {
+        "PAUSE_END": 1,
+        "ITEM_PURCHASED": 84,
+        "SKILL_LEVEL_UP": 72,
+        "WARD_PLACED": 38,
+        "ITEM_DESTROYED": 52,
+        "LEVEL_UP": 62,
+        "CHAMPION_KILL": 21,
+        "CHAMPION_SPECIAL_KILL": 4,
+        "TURRET_PLATE_DESTROYED": 5,
+        "WARD_KILL": 2,
+        "ELITE_MONSTER_KILL": 3
+      },
+      "participant_frame_fields": [
+        "championStats",
+        "currentGold",
+        "damageStats",
+        "goldPerSecond",
+        "jungleMinionsKilled",
+        "level",
+        "minionsKilled",
+        "participantId",
+        "position",
+        "timeEnemySpentControlled",
+        "totalGold",
+        "xp"
+      ],
+      "timeline_frame_interval_ms": 60000
+    }
+  ]
+}

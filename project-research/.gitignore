@@ -1,0 +1,7 @@
+data/
+private/
+__pycache__/
+.env
+*.key
+access_token
+kaggle.json

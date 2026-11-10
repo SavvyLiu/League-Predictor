@@ -1,0 +1,26 @@
+{
+  "checked_on": "2026-11-09",
+  "dataset": "project-research\\data\\original-10min\\high_diamond_ranked_10min.csv",
+  "sha256": "82b2e23279097c2dac616e966eb2911711c428d41b6382b4cdb15da4892f9ca6",
+  "rows": 9879,
+  "columns": 40,
+  "predictors_in_source": 38,
+  "label_counts": {
+    "0": 4949,
+    "1": 4930
+  },
+  "missing_cells": 0,
+  "duplicate_match_ids": 0,
+  "constant_columns": [],
+  "bytes": 1446502,
+  "blue_kills_equal_red_deaths": true,
+  "red_kills_equal_blue_deaths": true,
+  "blue_gold_rate_equals_total_div_10": true,
+  "blue_cs_rate_equals_total_div_10": true,
+  "herald_counts": {
+    "blue": 1857,
+    "red": 1581
+  },
+  "trained_project_models_found_in_workspace": false,
+  "model_evidence_caveat": "Local project files reviewed; teammate files or other storage may contain later work."
+}

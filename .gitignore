@@ -1,0 +1,40 @@
+# This checkout also contains other course work. Publish only project paths.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/CONTRIBUTING.md
+!/docs/
+!/.github/
+!/progress-report/
+!/project-research/
+!/Project Proposal.docx
+
+# Local credentials, raw player records, and alternative dataset downloads.
+**/__pycache__/
+**/.ipynb_checkpoints/
+**/.venv/
+**/.env
+**/.env.*
+**/*.key
+**/access_token
+**/kaggle.json
+/project-research/data/
+/project-research/private/
+/project-research/sources/
+/project-research/progress-report-source-notes.md
+
+# Generic style files supplied with the course template remain available locally.
+/progress-report/report/acl.sty
+/progress-report/report/acl_natbib.bst
+
+# Build intermediates and duplicated archives.
+**/*.aux
+**/*.bbl
+**/*.blg
+**/*.log
+**/*.out
+**/*.synctex.gz
+**/*.zip
+**/.DS_Store
+**/Thumbs.db

@@ -1,0 +1,130 @@
+{
+  "seed": 42,
+  "split": {
+    "train": {
+      "n": 6915,
+      "blue_wins": 3451,
+      "red_wins": 3464
+    },
+    "validation": {
+      "n": 1482,
+      "blue_wins": 740,
+      "red_wins": 742
+    },
+    "test": {
+      "n": 1482,
+      "blue_wins": 739,
+      "red_wins": 743
+    }
+  },
+  "dataset_sha256": "82b2e23279097c2dac616e966eb2911711c428d41b6382b4cdb15da4892f9ca6",
+  "split_policy": "Stratified 70/15/15; saved assignments reused on rerun",
+  "test_evaluated": false,
+  "threshold": 0.5,
+  "positive_class": "blueWins=1",
+  "training_blue_win_rate": 0.499060014461316,
+  "experiments": {
+    "gold_only": [
+      "gold"
+    ],
+    "core": [
+      "gold",
+      "experience",
+      "level",
+      "lane_cs",
+      "jungle_cs",
+      "kills",
+      "assists"
+    ],
+    "core_objectives": [
+      "gold",
+      "experience",
+      "level",
+      "lane_cs",
+      "jungle_cs",
+      "kills",
+      "assists",
+      "dragons",
+      "heralds"
+    ],
+    "core_vision": [
+      "gold",
+      "experience",
+      "level",
+      "lane_cs",
+      "jungle_cs",
+      "kills",
+      "assists",
+      "wards_placed",
+      "wards_destroyed"
+    ],
+    "core_objectives_vision": [
+      "gold",
+      "experience",
+      "level",
+      "lane_cs",
+      "jungle_cs",
+      "kills",
+      "assists",
+      "dragons",
+      "heralds",
+      "wards_placed",
+      "wards_destroyed"
+    ]
+  },
+  "logistic": {
+    "C": 1.0,
+    "solver": "lbfgs",
+    "penalty": "l2",
+    "tol": 1e-06,
+    "max_iter": 2000
+  },
+  "tuning": "None; fixed settings for this preliminary comparison",
+  "preprocessing": "Blue-minus-red differences; training-fitted StandardScaler per model; no filtering/imputation/augmentation",
+  "diagnostics": {
+    "gold_only": {
+      "iterations": 7,
+      "convergence_warnings": [],
+      "fit_seconds": 0.010745600011432543,
+      "training_log_loss": 0.5393436866758028,
+      "intercept": -0.00226735197281472
+    },
+    "core": {
+      "iterations": 21,
+      "convergence_warnings": [],
+      "fit_seconds": 0.016476300021167845,
+      "training_log_loss": 0.5351995009329086,
+      "intercept": -0.0022859800689921184
+    },
+    "core_objectives": {
+      "iterations": 20,
+      "convergence_warnings": [],
+      "fit_seconds": 0.0160310999781359,
+      "training_log_loss": 0.5280921382300571,
+      "intercept": -0.0020600606810618318
+    },
+    "core_vision": {
+      "iterations": 22,
+      "convergence_warnings": [],
+      "fit_seconds": 0.01854069999535568,
+      "training_log_loss": 0.5351984356190326,
+      "intercept": -0.002300090551873584
+    },
+    "core_objectives_vision": {
+      "iterations": 21,
+      "convergence_warnings": [],
+      "fit_seconds": 0.019258399988757446,
+      "training_log_loss": 0.5280718353820496,
+      "intercept": -0.0021073806034419785
+    }
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.0.2",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.15.1",
+    "matplotlib": "3.9.3"
+  },
+  "elapsed_seconds": 0.9168957000074442
+}

@@ -1,0 +1,23 @@
+{
+  "comparison": "core_objectives_vision minus core",
+  "resamples": 2000,
+  "seed": 42,
+  "scope": "Paired validation-row bootstrap conditional on fixed fitted models; does not include training/split variability or correct for multiple comparisons.",
+  "differences": {
+    "accuracy": {
+      "estimate": 0.0020242914979757085,
+      "lower_95": -0.012145748987854251,
+      "upper_95": 0.016869095816464237
+    },
+    "brier": {
+      "estimate": -0.0007752210740465219,
+      "lower_95": -0.0033943357901663413,
+      "upper_95": 0.0018763365784260399
+    },
+    "log_loss": {
+      "estimate": -0.0034156890158927784,
+      "lower_95": -0.009796839224715909,
+      "upper_95": 0.002911562874888732
+    }
+  }
+}
