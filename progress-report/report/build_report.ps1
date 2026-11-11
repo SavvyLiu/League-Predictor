@@ -1,4 +1,7 @@
-param([string]$OutputDirectory = (Join-Path $PSScriptRoot '..\..\output\pdf'))
+param(
+    [string]$OutputDirectory = (Join-Path $PSScriptRoot '..\..\output\pdf'),
+    [string]$PythonExecutable = 'python'
+)
 $ErrorActionPreference = 'Stop'
 $pdflatexCommand = Get-Command pdflatex -ErrorAction SilentlyContinue
 $bibtexCommand = Get-Command bibtex -ErrorAction SilentlyContinue
@@ -16,6 +19,8 @@ $buildDirectory = Join-Path $resolvedOutput 'latex-build'
 New-Item -ItemType Directory -Path $buildDirectory -Force | Out-Null
 Push-Location $PSScriptRoot
 try {
+    & $PythonExecutable (Join-Path $PSScriptRoot 'generate_tables.py')
+    if ($LASTEXITCODE -ne 0) { throw 'Report table generation failed.' }
     & $latexExecutable --enable-installer -interaction=nonstopmode -halt-on-error "-output-directory=$buildDirectory" main.tex
     if ($LASTEXITCODE -ne 0) { throw 'First LaTeX pass failed; inspect main.log.' }
     # BibTeX resolves the bibliography and the copied ACL style relative to this source folder.
@@ -25,6 +30,6 @@ try {
         & $latexExecutable --enable-installer -interaction=nonstopmode -halt-on-error "-output-directory=$buildDirectory" main.tex
         if ($LASTEXITCODE -ne 0) { throw 'LaTeX reference-resolution pass failed.' }
     }
-    Copy-Item -LiteralPath (Join-Path $buildDirectory 'main.pdf') -Destination (Join-Path $resolvedOutput 'Group27_ProgressReport_DRAFT.pdf') -Force
-    Write-Output (Join-Path $resolvedOutput 'Group27_ProgressReport_DRAFT.pdf')
+    Copy-Item -LiteralPath (Join-Path $buildDirectory 'main.pdf') -Destination (Join-Path $resolvedOutput 'Group27_ProgressReport.pdf') -Force
+    Write-Output (Join-Path $resolvedOutput 'Group27_ProgressReport.pdf')
 } finally { Pop-Location }

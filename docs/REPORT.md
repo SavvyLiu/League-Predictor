@@ -1,8 +1,8 @@
-# Report source and current review status
+# Report source and submission package
 
-The editable LaTeX source and bibliography are in `progress-report/report/`. The PDF there describes the earlier logistic-only milestone draft. The newest forest comparison is in `progress-report/MODEL_COMPARISON.md` and its one-page PDF.
+The November 10 report is `progress-report/Group27_ProgressReport.pdf`. Its editable source is `progress-report/report/main.tex`. It includes both forest rows, implementation details, feature statistics, two additional task-specific references, confirmed contributions, dated responsibilities and the AI-use estimate. The test set remains reserved.
 
-The report still needs the new comparison integrated, factual contribution statements, complete AI-use/carbon disclosure and a final human review. It is not marked submission-ready.
+The older logistic-only draft is retained locally as an archive and excluded from the final submission package. The separate model-comparison brief provides additional discussion detail.
 
 ## Build the main report
 
@@ -16,4 +16,10 @@ With MiKTeX installed, on Windows:
 
 Alternatively, run pdfLaTeX, BibTeX, then pdfLaTeX twice from `progress-report/report/`. Additional standard LaTeX packages may need installation.
 
-The model results table is currently checked in as `results_table.tex`. When revising the report to include new runs, update both its table and the surrounding explanations to match the measured CSV outputs. The supplied initial table contains the earlier logistic comparisons only.
+The helper requires the Python packages in `progress-report/requirements.txt`. It regenerates `results_table.tex` from `results/all_validation_metrics.csv` and `feature_summary_table.tex` from `results/training_feature_summary.csv`. Output is `output/pdf/Group27_ProgressReport.pdf`; copy it to `progress-report/Group27_ProgressReport.pdf` when publishing an updated build. Use `-PythonExecutable` to select a custom Python interpreter.
+
+## Package and disclosure
+
+The final `output/Group27_ProgressReport.zip` contains the PDF, experiment instructions, pinned dependencies, all three scripts, core CSV and source note, saved results, executed notebook and editable report source with the course style files. It excludes optional API/research tooling, credentials, fresh player data, build intermediates, previous draft PDFs and nested archives. It has not been submitted to Avenue by the assistant.
+
+`report/ai_usage.json` records the 19-message count and 82.08 g CO2 approximation. Contribution statements use Savvy's factual confirmation rather than inferred commit ownership. No independent Riot/TA approval is claimed; the report documents the publisher's CC0 listing and the stated static-data coursework use.

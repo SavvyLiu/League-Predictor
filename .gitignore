@@ -29,6 +29,7 @@
 /progress-report/report/acl_natbib.bst
 
 # Build intermediates and duplicated archives.
+/progress-report/Group27_ProgressReport_DRAFT.pdf
 **/*.aux
 **/*.bbl
 **/*.blg

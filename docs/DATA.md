@@ -10,7 +10,7 @@
 - Publisher metadata lists `CC0-1.0`; this attribution is retained independently of any license decision for the team's original code.
 - 9,879 distinct matches, 38 source predictors, match ID and binary winner label. There are 4,930 blue wins and 4,949 losses, with no missing cells or duplicate IDs in the checked file.
 
-The uploader attributes collection to Riot's API and describes high-Diamond/Master solo-queue games. Dates, region, patches and player IDs are not present in the CSV. Its rank and exact checkpoint provenance cannot be independently verified from the columns. Unusually large vision values remain a quality concern. The team's earlier question about model-training use remains unresolved in the reviewed records; this document does not claim that the publisher license label answers it.
+The uploader attributes collection to Riot's API and describes high-Diamond/Master solo-queue games. Dates, region, patches and player IDs are not present in the CSV. Its rank and exact checkpoint provenance cannot be independently verified from the columns. Unusually large vision values remain a quality concern. The progress report documents the publisher's CC0 listing and the team's non-commercial coursework use of this static aggregate table as its response to the data-use question. No separate Riot or TA approval is claimed.
 
 ## Other investigated sources
 

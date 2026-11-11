@@ -16,17 +16,14 @@
 
 \begin{document}
 \maketitle
-\begin{center}
-\small\textbf{Review draft: contribution statements and AI disclosure require confirmation.}
-\end{center}
 
 \section{Introduction}
 
 League of Legends matches can change direction after an early lead. Gold, experience and combat statistics reveal advantages, but the eventual outcome also depends on decisions and interactions that a team-level snapshot does not capture. Our project predicts the probability of an eventual blue-team win from statistics published for the ten-minute checkpoint. Each match has one binary target: \texttt{blueWins}=1 for a blue victory and 0 for a red victory. The intended application is historical match analysis, rather than a claim that a game is already decided at ten minutes.
 
-Our proposal considered logistic regression, support vector machines (SVMs), tree ensembles and neural networks. For this milestone we have implemented a smaller, controlled comparison: simple baselines and regularized logistic regression with different feature groups. The main question is whether objectives and vision statistics improve on economy, experience, farming and combat features. A secondary question is whether probability outputs are useful beyond their thresholded win/loss predictions. We therefore evaluate probability error as well as classification performance.
+Our proposal considered logistic regression, support vector machines (SVMs), tree ensembles and neural networks. For this milestone we implement a controlled comparison of simple baselines, regularized logistic regression and random forests. We ask whether objectives and vision statistics improve on economy, experience, farming and combat features, and whether nonlinear interactions improve on the linear model. We evaluate probability error as well as classification performance.
 
-We present completed data checks, fixed match splits, five fitted logistic models and preliminary validation results. The final test set remains reserved. The contribution is a transparent feature-group comparison with explicit uncertainty and data limitations.
+We present completed data checks, fixed match splits, five logistic feature configurations, two random forests and preliminary validation results. The final test set remains reserved. The contribution is a transparent feature-group and model-family comparison with explicit uncertainty and data limitations.
 
 \section{Related Work}
 
@@ -34,7 +31,9 @@ We present completed data checks, fixed match splits, five fitted logistic model
 
 \citet{kim2020} address confidence calibration for League winner prediction, emphasizing uncertainty in game outcomes. This is relevant to our probability output: a model that predicts the correct class can still give misleading confidence. We use their work to motivate probability evaluation, without reproducing their uncertainty-aware neural loss. \citet{guo2017} study calibration in neural networks and investigate temperature scaling. Their experiments concern different data, so they motivate a future calibration comparison rather than establish that our current model needs that particular correction.
 
-\citet{niculescu2005} compare probability predictions and calibration across supervised methods. This supports evaluating probability quality separately from accuracy and ranking. We report Brier score, log loss and reliability diagrams, and have not yet fitted a post-processing calibrator. Finally, \citet{breiman2001} provides the foundation for a future random-forest comparison that can represent nonlinear feature interactions. That comparison remains future work; the results below contain logistic models only. These sources inform method choices, while the dataset is cited separately \citep{ma2020}.
+\citet{silva2018} study recurrent networks for continuous prediction of competitive League matches. Their sequential formulation motivates investigating how an advantage develops, but our current experiment uses one fixed checkpoint. \citet{do2021} use player--champion experience to predict ranked outcomes before gameplay. Their work motivates richer player/champion context, which the present CSV omits; its pre-game task and feature set are not directly comparable to our validation scores.
+
+\citet{niculescu2005} support evaluating probability quality separately from accuracy and ranking. We report Brier score, log loss and reliability diagrams without a fitted post-processing calibrator. \citet{breiman2001} motivates our implemented random-forest comparison, which can represent nonlinear interactions. The dataset is cited separately \citep{ma2020}.
 
 \section{Dataset}
 
@@ -48,13 +47,21 @@ Our copy contains 9,879 distinct match IDs and 40 columns: 38 source predictors,
 
 We verified that the supplied gold and XP differences equal blue totals minus red totals. Blue kills equal red deaths and vice versa. For both teams, gold per minute and lane CS per minute equal the corresponding total divided by ten. These identities guide a compact representation rather than retaining redundant copies of the same information. We do not treat the numerical match identifier as a predictor.
 
-No rows were removed, imputed, clipped or augmented. We inspected training-feature distributions and recorded counts beyond three training standard deviations. Some vision values are unusually large, but their source-level validity is unknown. We retain them provisionally rather than impose an unverified exclusion rule, and identify vision quality as a limitation. Scaling is fitted separately inside each model's training pipeline.
+No rows were removed, imputed, clipped or augmented. We inspected training-feature distributions and recorded counts beyond three training standard deviations. Some vision values are unusually large, but their source-level validity is unknown. We retain them provisionally rather than impose an unverified exclusion rule, and identify vision quality as a limitation. Logistic scaling is fitted using training rows only; forests use unscaled inputs.
 
-\subsection{Limitations and API feasibility}
+\begin{table}[t]
+\centering
+\small
+\input{feature_summary_table.tex}
+\caption{Selected blue-minus-red features in the 6,915 training matches, before scaling. The complete eleven-feature summary is included with the results. Means near zero are consistent with roughly balanced sides; the large ward-count spread warrants inspection.}
+\label{tab:data-summary}
+\end{table}
+
+\subsection{Provenance, use and limitations}
 
 The release lacks dates, region, patch versions and player identifiers. We therefore cannot verify chronological generalization, prevent overlap between players across splits, or establish that the model applies to the current game. The uploader supplies a ten-minute description, but the CSV does not expose raw timeline timestamps for independent checkpoint verification. No post-match statistic is intentionally added as an input; final outcome is used only as the target.
 
-Earlier source investigation also produced a separate ten-match Riot API feasibility pilot through 22 successful requests. It demonstrated timeline extraction and feature construction, but is too small and selectively sampled to establish model quality. These matches are not merged into the Kaggle experiment. The downloaded Kaggle metadata lists CC0; that source label and successful API access do not themselves resolve the model-training permission question raised by our TA. We make no claim that the outstanding question has been cleared.
+To address the TA's data-use question, we documented the publisher's CC0-listed release \citep{ma2020} and restricted this experiment to non-commercial coursework on that static public aggregate table, retaining its citation. This states the release and use we rely on, without claiming a separate approval from Riot or the TA. The separate API feasibility data are not used in the models reported here.
 
 \section{Features}
 
@@ -66,7 +73,7 @@ Differences discard some absolute-state information. Two matches with the same g
 
 \section{Implementation}
 
-\subsection{Baselines and learned model}
+\subsection{Baselines and logistic regression}
 
 The majority baseline learns the more common training label and predicts it for every validation match. Because the training set has 3,464 red wins and 3,451 blue wins, it always predicts red. A separate probability baseline outputs the training blue-win frequency, $3451/6915=0.49906$, for every match. Keeping these baselines separate avoids presenting hard majority predictions as meaningful confidence estimates.
 
@@ -83,11 +90,17 @@ With equally weighted training matches, the scikit-learn L2 objective is
 \end{align}
 The intercept is not penalized. We set $C=1$ and optimize with L-BFGS, a limited-memory quasi-Newton method \citep{sklearnlogistic}. This is a change from the proposal's mini-batch SGD suggestion: the small dense feature set permits a standard deterministic solver without selecting a learning-rate schedule. We use tolerance $10^{-6}$ and at most 2,000 iterations. The five fits converged without convergence warnings in 7--22 iterations. No hyperparameter search, class weighting or threshold tuning has been performed.
 
+\subsection{Random forests}
+
+We fit one forest on the seven core inputs and another on the eleven expanded inputs, preserving the logistic split and validation match order. Each uses 500 bootstrap trees, maximum depth 8, minimum 10 samples per leaf, square-root feature subsampling, Gini impurity and seed 42. These settings were fixed before inspecting forest scores; no search was conducted. Depth and leaf-size constraints limit complexity, although this is not an optimized forest configuration.
+
+Trees learn threshold splits by greedily reducing Gini impurity; there is no gradient-based optimization of the logistic objective. The forest probability is the average of its trees' leaf class proportions. Inputs are unscaled differences, since threshold splits do not require standardization. This tests whether nonlinear interactions help while holding the feature representation and observed matches fixed.
+
 \subsection{Reproducible pipeline}
 
-Each estimator is a \texttt{StandardScaler} followed by \texttt{LogisticRegression}. Feature means and population standard deviations are learned only from training rows; validation rows use the saved transformation. Scaling prevents raw feature units from arbitrarily changing the effect of the L2 penalty. A probability of at least 0.5 produces a blue-win prediction.
+Each logistic estimator is a \texttt{StandardScaler} followed by \texttt{LogisticRegression}. Feature means and population standard deviations are learned only from training rows; validation rows use that transformation. Scaling controls the effect of feature units on the L2 penalty. Both model families use a fixed probability threshold of 0.5 for blue-win predictions.
 
-The implementation saves the source hash, split assignments, feature lists, solver settings, versions, convergence diagnostics, coefficients and validation predictions. The main packages are pandas 2.2.3, NumPy 2.0.2, scikit-learn 1.6.1 and Matplotlib 3.9.3, under Python 3.12.14. One script reproduces the experiment from the included CSV; a notebook explains the individual steps. Saved splits are reused, rather than regenerated to obtain a favorable score. The script has no test-performance evaluation step.
+The implementation saves the source hash, split assignments, feature lists, model settings, versions, diagnostics and validation predictions. Packages are pandas 2.2.3, NumPy 2.0.2, scikit-learn 1.6.1 and Matplotlib 3.9.3, under Python 3.12.14. Scripts reproduce both model families and independently verify saved metrics; the notebook explains the steps. Saved splits are reused. There is no test-performance evaluation step.
 
 \section{Results and Evaluation}
 
@@ -101,7 +114,7 @@ All reported scores are preliminary validation results; the test set is reserved
 \centering
 \small
 \input{results_table.tex}
-\caption{Preliminary validation results on the same 1,482 matches. LR denotes L2 logistic regression. Blue is the positive class. Lower Brier and log loss are better. The majority baseline does not provide probability-quality scores; the constant training-rate baseline does. No test scores are reported.}
+\caption{Preliminary validation results on the same 1,482 matches. LR is L2 logistic regression; RF is random forest. Blue is the positive class. Lower Brier and log loss are better. Probability baseline scores use the training win rate. No test scores are reported.}
 \label{tab:results}
 \end{table*}
 
@@ -110,6 +123,8 @@ All reported scores are preliminary validation results; the test set is reserved
 Table~\ref{tab:results} shows that gold alone reaches 71.05\% accuracy, compared with 50.07\% for the majority baseline. The seven-feature core improves to 71.93\%. Adding objectives reaches 72.27\%, with validation log loss 0.53969 versus 0.54331 for core. Adding vision alone leaves accuracy unchanged and slightly worsens probability error. The combined extension obtains 72.13\% accuracy and log loss 0.53990. On this split, objectives appear more useful than the two vision counts, but this is a small difference among closely related models, not a definitive ranking.
 
 The combined extension correctly classifies 1,069 matches, versus 1,066 for core: three additional correct decisions overall. Its confusion matrix contains 518 correctly predicted red wins, 551 correctly predicted blue wins, 224 false blue predictions and 189 missed blue wins. The core model has 219 false blue predictions and 197 missed blue wins. The extension therefore changes the error balance rather than improving every category.
+
+The core and expanded forests reach 71.79\% and 71.86\% accuracy, versus 71.93\% and 72.13\% for matched logistic models. Expanded forest log loss is 0.54012 versus 0.53990 for expanded logistic regression. Thus the tested forest provides no clear gain. Paired-bootstrap accuracy intervals for forest minus logistic are $[-1.08,0.74]$ percentage points on core and $[-1.28,0.74]$ on expanded inputs. Both include zero; these results do not rule out gains from future tuning or other representations.
 
 \begin{figure*}[t]
 \centering
@@ -124,23 +139,23 @@ Figure~\ref{fig:calibration} shows predictions distributed across the probabilit
 
 \section{Feedback and Plans}
 
-Hongyi Zhang's October 9 Teams feedback requested a formal dataset citation, basic feature/sample/class statistics, evidence concerning training use, simple baselines and a clear system strategy. We now provide the dataset citation and verified counts, separate majority/probability/gold-only baselines, and an implemented data-to-evaluation pipeline. The earlier proposal feedback also asked why SVMs and neural networks were chosen for this task and flagged a nested ZIP. We address the model-choice concern by explaining the completed logistic comparison and treating unimplemented alternatives explicitly as future work. We will package ordinary code/data/report files in one archive.
+Hongyi Zhang's October 9 Teams feedback requested a formal dataset citation, feature/sample/class statistics, evidence concerning training use, simple baselines and a clear system strategy. We provide the citation, checked counts and Table~\ref{tab:data-summary}, document the publisher's CC0 listing and our non-commercial static-data use, and implement majority/probability/gold-only baselines plus logistic/forest comparisons. The proposal feedback also requested reasons for SVM/NN choices and flagged a nested ZIP. We now distinguish implemented models from planned alternatives, and package ordinary report/code/data files in one archive.
 
-An RBF SVM is a plausible next comparison because it can capture nonlinear boundaries among the small, standardized tabular inputs. However, decision scores are not automatically calibrated probabilities, so its probability-estimation procedure must be evaluated. A small neural network could learn interactions such as the relationship between economy and objectives, but its additional flexibility may overfit this modest dataset and its calibration needs checking. A random forest offers another nonlinear reference \citep{breiman2001}. These are task-specific reasons to test alternatives, not evidence that a more complex model will necessarily outperform logistic regression.
+An RBF SVM could capture nonlinear boundaries among the small standardized inputs, but its decision scores require a separately assessed probability-estimation procedure. A small neural network could learn economy/objective interactions, with overfitting and calibration risks on this modest dataset. Our implemented forest supplies an initial nonlinear reference \citep{breiman2001}; its similar scores show why extra complexity must be tested rather than assumed beneficial.
 
-The implementation has already changed our priorities. Gold-only is a strong reference, the feature extensions yield small gains, and uncertainty intervals include no effect. We will therefore emphasize controlled comparisons and error analysis rather than expanding the number of model names. The weak vision result also makes source-quality inspection a priority. We need to distinguish limited information in these counts from model misspecification, redundancy or collection artifacts before dropping vision permanently.
+The results change our priorities: gold-only is strong, feature gains are small, and the forest offers no clear advantage. We will emphasize stable comparisons and error analysis. The weak logistic vision result warrants checking measurement quality and representation before dropping vision permanently; it does not establish that vision is unimportant in League.
 
-Before the final project, we plan to: (1) compare regularization and a limited set of nonlinear models using training-only stratified cross-validation; (2) examine difference versus side-total representations and the unusual vision values; (3) fit any calibrator using training folds and compare probability error and reliability; and (4) freeze the model/feature/calibration choices before a single final test evaluation. Repeatedly consulting the current validation set can make conclusions optimistic, so its role remains developmental. If dependence between players cannot be checked, that limitation must remain in the final interpretation.
+\textbf{Dated responsibilities.} By \textbf{November 17}, Peter will compare regularization and forest complexity with training-only stratified cross-validation. By \textbf{November 24}, Savvy will examine feature representations and vision quality, documenting the separate fresh-data extension. By \textbf{December 1}, Krish will lead calibration/error analysis and assemble limitations, using training folds for any calibrator. By \textbf{December 7}, all three will review and freeze choices; Peter will run the final held-out evaluation once and Savvy will verify reproducibility. By \textbf{December 10}, Krish will assemble the final report, Savvy will check the package, and Peter will audit reported results. All members will review the submission.
 
-Fresh API collection would require a defined sampling window, adequate match count, documented checkpoint conventions and resolution of the outstanding data-use question. Champion/item reconstruction and additional checkpoints are lower priority than completing the controlled comparisons and explaining their limitations.
+Repeated consultation of validation results can make conclusions optimistic, so this split remains developmental. Fresh API collection and champion/item features are a separate extension; the core historical-data evaluation remains reproducible without them. Missing player IDs continue to limit dependence checks.
 
 \section*{Team Contributions}
 
-\textbf{Pending factual confirmation before submission.} Individual statements for Savvy Liu, Peter Li and Krish Panchal will describe their actual work, including relevant earlier contributions. They have not yet been supplied.
+\textbf{Savvy Liu} implemented the preprocessing, logistic/forest experiments and evaluation checks, and prepared this report with the AI assistance disclosed below. Savvy also contributed to the original proposal as part of the three-way split. \textbf{Peter Li} contributed to the original proposal as part of the three-way split, reviewed the progress-report work and approved it. \textbf{Krish Panchal} contributed to the original proposal as part of the three-way split, reviewed the progress-report work and approved it.
 
 \section*{Generative AI Disclosure}
 
-OpenAI Codex assisted with source retrieval, planning, code generation, result interpretation and drafting. Results were produced by running the included code locally. \textbf{Before submission:} confirm the model label, counted usage scope and carbon-footprint estimate using the course convention. Remote hardware, inference duration and compute region are unavailable; the local experiment runtime is not remote inference time. This review-draft disclosure remains incomplete.
+We used OpenAI Codex, with session-recorded model \texttt{gpt-6.1-sol}, for source retrieval, planning, code generation, debugging, interpretation and report drafting. We also considered an AI review supplied to the team. Results were produced by executing the included code locally and were checked for reproducibility. For the recorded project chat through November 10, we counted \textbf{19 user queries}, including clarification responses. Applying the syllabus convention gives \textbf{$19\times4.32=82.08$ g CO$_2$}. This is a query-based approximation covering that chat, including repository and API-setup discussion, not a measured inference footprint or an estimate of unobserved external-review activity. Provider: OpenAI. Hosted hardware, inference time and compute region were not exposed; local experiment runtimes are not substituted for those values.
 
 \bibliography{custom}
 \end{document}
