@@ -10,7 +10,9 @@
 - Publisher metadata lists `CC0-1.0`; this attribution is retained independently of any license decision for the team's original code.
 - 9,879 distinct matches, 38 source predictors, match ID and binary winner label. There are 4,930 blue wins and 4,949 losses, with no missing cells or duplicate IDs in the checked file.
 
-The uploader attributes collection to Riot's API and describes high-Diamond/Master solo-queue games. Dates, region, patches and player IDs are not present in the CSV. Its rank and exact checkpoint provenance cannot be independently verified from the columns. Unusually large vision values remain a quality concern. The progress report documents the publisher's CC0 listing and the team's non-commercial coursework use of this static aggregate table as its response to the data-use question. No separate Riot or TA approval is claimed.
+The uploader attributes collection to Riot's API and describes high-Diamond/Master solo-queue games. Dates, region, patches and player IDs are not present in the CSV. Its rank and exact checkpoint provenance cannot be independently verified from the columns. Unusually large vision values remain a quality concern.
+
+Policy check, November 10, 2026: Riot's [API terms](https://developer.riotgames.com/terms), under Licensed Uses and Restrictions, allow documented purposes; its [Developer Portal](https://developer.riotgames.com/docs/portal#personal-api-keys) lists personal research as acceptable. We interpret offline coursework analysis as falling within that allowance. This supplies policy evidence for the TA's question without claiming project-specific approval or explicit model-training language. The publisher's CC0 label does not independently establish its authority over third-party rights. Our experiment uses only the static aggregate table, with no player identifiers or live assistance. Public player-facing deployment is a separate scope governed by Riot's [League developer policy](https://developer.riotgames.com/docs/lol#registration).
 
 ## Other investigated sources
 
