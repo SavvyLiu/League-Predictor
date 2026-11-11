@@ -6,12 +6,13 @@ Group 27's machine-learning project: predict the probability that the blue team 
 
 ## Start here
 
+- [Progress report (PDF)](progress-report/Group27_ProgressReport.pdf): updated November 10 with both model families, contributions, dated responsibilities and AI disclosure.
 - [Model comparison brief (PDF)](progress-report/Group27_Model_Comparison.pdf): one-page summary for discussion.
 - [Detailed comparison](progress-report/MODEL_COMPARISON.md): settings, uncertainty, limitations and questions for the TA.
 - [Executed experiment walkthrough](progress-report/Experiment_Walkthrough.ipynb): step-by-step explanations and saved outputs.
 - [Experiment guide](progress-report/README.md): reproducibility instructions, file descriptions and assumptions.
 - [Original proposal](Project%20Proposal.docx) and [research notes](project-research/research-notes.md).
-- [Report source](progress-report/report/main.tex) and [earlier report draft](progress-report/Group27_ProgressReport_DRAFT.pdf). The PDF describes the earlier logistic-only stage; it still needs the forest comparison, contribution statements and complete AI-use disclosure before submission.
+- [Report source](progress-report/report/main.tex) and [build instructions](docs/REPORT.md).
 
 ## Reproduce the experiments
 
@@ -51,7 +52,7 @@ progress-report/
   code/                  # fitting, forest comparison and independent checks
   data/                  # the CSV used by the core experiment and its source note
   results/               # fixed splits, validation predictions, scores and figures
-  report/                # editable LaTeX draft, bibliography and build helper
+  report/                # editable LaTeX report, bibliography and build helper
   Experiment_Walkthrough.ipynb
 project-research/
   findings/              # dataset audits and aggregate API feasibility results
@@ -70,4 +71,4 @@ The core CSV contains 9,879 matches from Yi Lan Ma's *League of Legends Diamond 
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Please propose changes on branches and use pull requests so the team can review experiment changes. Keep the saved test set reserved. Public readers can fork and propose pull requests; direct pushes require repository write access.
 
-Registered group members: Savvy Liu, Peter Li and Krish Panchal. Contribution statements in the report must reflect actual work and are still pending confirmation. The initial import is a repository snapshot, not a reconstruction of who completed each historical task.
+Registered group members: Savvy Liu, Peter Li and Krish Panchal. The report records the contributions confirmed by Savvy: a three-way proposal split, code/report implementation by Savvy with disclosed AI assistance, and review/approval by Peter and Krish. The initial import is a repository snapshot, not a reconstruction of who completed each historical task.

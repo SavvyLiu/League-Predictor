@@ -24,4 +24,4 @@ The checked CSV is included. Larger alternative datasets are documented by sourc
 
 ## Report status
 
-The current main PDF is an earlier logistic-only review draft. The forest comparison has a separate brief. Before submission, reconcile the main report with the latest experiments and complete contributions/disclosure. See [report build notes](docs/REPORT.md) for the template dependency.
+The November 10 report integrates the logistic/forest results and includes confirmed contributions, dated responsibilities and the scoped AI-use estimate. See [report build notes](docs/REPORT.md) for template dependencies, table generation and packaging. Preserve the distinction between validation findings and the reserved final test.

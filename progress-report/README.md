@@ -48,7 +48,7 @@ The script works from any current directory; paths are resolved relative to its 
 
 All results are preliminary **validation** scores. Lower Brier/log loss is better. The small gains from expanded features are not conclusive. A causal claim such as "taking dragons causes wins" is not supported by this observational predictive experiment.
 
-See `MODEL_COMPARISON.md` for the new forest comparison and discussion questions. The existing report PDF is the earlier logistic-only review draft; it will be revised after the TA/team discussion. The tested forest does not clearly improve on logistic regression. Expanded forest features improve log loss conditionally, with uncertainty and multiple-comparison limitations described in the brief.
+See `Group27_ProgressReport.pdf` for the November 10 report, including both model families, and `MODEL_COMPARISON.md` for the detailed comparison and discussion questions. The tested forest does not clearly improve on logistic regression. Expanded forest features improve log loss conditionally, with uncertainty and multiple-comparison limitations described in the brief.
 
 ## Files
 
@@ -71,10 +71,10 @@ See `MODEL_COMPARISON.md` for the new forest comparison and discussion questions
 
 Ma, Y. L. (2020). *League of Legends Diamond Ranked Games (10 min)* (Version 1) [Dataset]. Kaggle. [Dataset page](https://www.kaggle.com/datasets/bobbyscience/league-of-legends-diamond-ranked-games-10-min).
 
-The downloaded source metadata lists CC0; the uploader attributes collection to Riot's API. The CSV does not identify dates, regions, patches or players. The uploader's rank description is not independently verified from the CSV. No claim of representativeness, chronological evaluation, independence across players, current-patch performance, or resolution of the earlier training-permission question is made.
+The downloaded source metadata lists CC0; the uploader attributes collection to Riot's API. The report also cites Riot's documented allowance for personal research as the policy basis for this offline coursework study, without claiming project-specific approval or explicit model-training authorization. See `DATA.md` in the submission package or `docs/DATA.md` in the repository for the source links and limitations. The CSV does not identify dates, regions, patches or players. The uploader's rank description is not independently verified from the CSV. No claim of representativeness, chronological evaluation, independence across players or current-patch performance is made.
 
-## Report completion notes
+## Report and disclosure
 
-The report is a review draft until individual contributions and AI-use/carbon-footprint disclosure are confirmed. Do not infer contributions from a commit author or from running everything on one computer. List actual human work and describe AI assistance openly. The AI disclosure must cover research/planning, code generation, analysis and report drafting where used; provider-side hardware, runtime and compute region are not available from this chat. Do not invent those fields or a measured emissions total.
+The report includes the contribution statements confirmed by Savvy and dated future responsibilities for all three members. Contributions are not inferred from commit authorship. AI assistance covers source retrieval, planning, code generation, debugging, interpretation and report drafting. The session-recorded model is OpenAI Codex `gpt-6.1-sol`; hosted hardware, inference runtime and compute region are unavailable.
 
-The instructor's syllabus provides an approximate 4.32 g CO2 per ChatGPT search-query convention. Record the actual counted scope and assumptions before applying it. This is a course estimation convention rather than a hardware measurement. The included experiment runtime measures local code execution and must not be presented as remote model inference time.
+Using the syllabus's 4.32 g CO2/query convention, 23 visible user messages in this project chat give **99.36 g CO2**. This includes clarification responses, repository/API discussion, the three subsequent feedback/policy questions and the prose-editing request; it excludes system context and assistant/tool calls. Activity generating the separately supplied AI review is unobserved and outside this count. `report/ai_usage.json` records the scope and assumptions. This is an approximation, not measured inference emissions. See `report/build_report.ps1` to regenerate the tables from saved results and compile the PDF with the course's ACL style dependencies.

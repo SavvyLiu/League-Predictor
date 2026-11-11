@@ -54,6 +54,6 @@ More data is not yet shown to be necessary by these scores alone. A useful follo
 
 Run `python code/run_experiments.py`, then `python code/run_random_forest.py`, then `python code/verify_results.py` from the experiment package. The new results are in `results/model_family_comparison.csv`, `random_forest_config.json`, `random_forest_validation_predictions.csv` and `model_family_paired_comparisons.json`. The comparison reliability diagram is in `results/figures/model_family_calibration.png`.
 
-The existing `Group27_ProgressReport_DRAFT.pdf` describes the earlier logistic-only stage and has not been revised for these new results. This brief is the current comparison record; final report edits and scope changes will follow the TA/team discussion. Individual contributions and complete AI-use disclosure still require factual confirmation. No message has been sent and no report has been submitted.
+The November 10 `Group27_ProgressReport.pdf` integrates these results and includes confirmed contribution statements, dated responsibilities and the scoped AI-use estimate. This brief retains more comparison detail and questions for the TA/team. No report has been submitted by the assistant.
 
 Method references: [Breiman (2001), Random Forests](https://www.stat.berkeley.edu/users/breiman/randomforest2001.pdf); [scikit-learn 1.6.1 forest documentation](https://scikit-learn.org/1.6/modules/generated/sklearn.ensemble.RandomForestClassifier.html).
